@@ -37,6 +37,8 @@ android {
         viewBinding = true
         // dataBinding = true
     }
+
+
 }
 
 dependencies {
@@ -55,6 +57,13 @@ dependencies {
     api  'com.scwang.smart:refresh-header-radar:2.0.3'       //雷达刷新头
     api  'com.scwang.smart:refresh-footer-ball:2.0.3'        //球脉冲加载
 
+    //aop
     implementation 'org.aspectj:aspectjrt:1.9.6'
+
+    /*okhttp、retrofit*/
+    api "com.squareup.okhttp3:okhttp:$okhttp_version"
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:converter-gson:$gson_version"
+    api "com.squareup.okhttp3:logging-interceptor:$logging_version"
 
 }

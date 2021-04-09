@@ -4,8 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.fw.base_library.net.RetrofitClient
 import com.fw.base_library.util.LogUtil
 import com.fw.base_library.util.ToastUtil
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import org.fw.x_wanandroid.API
 import org.fw.x_wanandroid.R
 import org.fw.x_wanandroid.databinding.ActivityTest3Binding
 
@@ -41,5 +46,14 @@ class TestViewBindingActivity : AppCompatActivity() {
         })
 
 
+        //test http
+
+        runBlocking {
+            val apiService = RetrofitClient.getApiService(API::class.java, API.BASE_URL)
+            val banner = apiService.getBanner()
+            LogUtil.i(""+banner)
+        }
     }
+
+
 }

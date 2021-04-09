@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.fw.x_wanandroid">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="com.fw.base_library.base.BaseApp"
         android:allowBackup="true"
