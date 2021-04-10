@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
  *    desc   :
  *    version: 1.0
  */
-object RetrofitClient {
+object RetrofitUtil {
     private const val CALL_TIMEOUT = 10L
     private const val CONNECT_TIMEOUT = 20L
     private const val IO_TIMEOUT = 20L
@@ -46,16 +46,18 @@ object RetrofitClient {
             .build()
     }
 
-    /**
-     * 获取接口请求
-     * @param service Class<T>
-     * @param baseUrl String 首次调用
-     * @return T
-     */
-    fun <T> getApiService(service: Class<T>, baseUrl: String = ""): T{
+    fun setBaseUrl(baseUrl: String){
         if(!TextUtils.isEmpty(baseUrl)){
             this.baseUrl = baseUrl
         }
+    }
+
+    /**
+     * 获取接口请求
+     * @param service Class<T>
+     * @return T
+     */
+    fun <T> getApiService(service: Class<T>): T{
         return retrofit.create(service)
     }
 

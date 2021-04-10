@@ -12,7 +12,7 @@ import android.util.Log
 object LogUtil {
     private const val TAG = "LogUtil==>"
     private var SHOW = true
-    private const val MAX_LENGTH = 400
+    private const val MAX_LENGTH = 4000
 
     fun setHide(){
         SHOW = false
@@ -89,9 +89,9 @@ object LogUtil {
         get() {
             val infos = arrayOf("", "", "")
             val elements = Thread.currentThread().stackTrace
-            infos[0] = elements[4].className.substring(elements[4].className.lastIndexOf(".") + 1)
-            infos[1] = elements[4].methodName
-            infos[2] = "(" + elements[4].fileName + ":" + elements[4].lineNumber + ")"
+            infos[0] = elements[5].className.substring(elements[5].className.lastIndexOf(".") + 1)
+            infos[1] = elements[5].methodName
+            infos[2] = "(" + elements[5].fileName + ":" + elements[5].lineNumber + ")"
             return infos
         }
 

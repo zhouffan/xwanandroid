@@ -13,12 +13,14 @@ import com.fw.base_library.util.ToastUtil
  *    version: 1.0
  */
 abstract class BaseActivity<VB: ViewBinding>: AppCompatActivity(){
-    open lateinit var mBinding: ViewBinding
+    open lateinit var mViewBinding: VB
+    protected lateinit var mActivity: AppCompatActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = getViewBinding()
-        setContentView(mBinding.root)
+        mViewBinding = getViewBinding()
+        setContentView(mViewBinding.root)
+        mActivity = this
 
         initialize()
     }

@@ -2,6 +2,7 @@ package com.fw.base_library.util
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
 
@@ -31,7 +32,7 @@ object ToastUtil {
                     createToast(context, msg, center)
                 }
             }else{
-
+                Log.e("ToastUtil", "toast 在非主线线程，且context不是activity")
             }
         }
     }

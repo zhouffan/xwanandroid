@@ -4,15 +4,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.fw.base_library.net.RetrofitClient
+import com.fw.base_library.net.RetrofitUtil
 import com.fw.base_library.util.LogUtil
 import com.fw.base_library.util.ToastUtil
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.fw.x_wanandroid.API
-import org.fw.x_wanandroid.R
+import org.fw.x_wanandroid.bean.Banner
+import org.fw.x_wanandroid.bean.BaseBean
 import org.fw.x_wanandroid.databinding.ActivityTest3Binding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class TestViewBindingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,13 +48,35 @@ class TestViewBindingActivity : AppCompatActivity() {
         })
 
 
-        //test http
+        testHttp()
+    }
 
+    /**
+     * 请求的方式
+     */
+    private fun testHttp(){
+        //对比方式1： 挂起函数，返回实体
         runBlocking {
-            val apiService = RetrofitClient.getApiService(API::class.java, API.BASE_URL)
+            val apiService = RetrofitUtil.getApiService(API::class.java)
             val banner = apiService.getBanner()
             LogUtil.i(""+banner)
         }
+
+        //对比方式2： 返回callback
+        val apiService = RetrofitUtil.getApiService(API::class.java)
+        val bannerCall = apiService.getBanner2()
+        bannerCall.enqueue(object : Callback<BaseBean<MutableList<Banner>>> {
+            override fun onFailure(call: Call<BaseBean<MutableList<Banner>>>, t: Throwable) {
+            }
+            override fun onResponse(
+                call: Call<BaseBean<MutableList<Banner>>>,
+                response: Response<BaseBean<MutableList<Banner>>>
+            ) {
+                val banner = response.body()?.data()
+                LogUtil.i(""+banner)
+                val desc = banner!![0]?.desc
+            }
+        })
     }
 
 

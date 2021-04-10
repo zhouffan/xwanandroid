@@ -59,11 +59,9 @@ dependencies {
 //    implementation "androidx.navigation:navigation-fragment:$navigationFragment_version"
 //    implementation "androidx.navigation:navigation-ui:$navigation_version"
 //    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-//    implementation "androidx.navigation:navigation-fragment-ktx:$navigationFragment_version"
 //    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+//    implementation "androidx.navigation:navigation-fragment-ktx:$navigationFragment_version"
 
-    //在Android中使用协程需要添加此依赖
-//    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
+
 
 }

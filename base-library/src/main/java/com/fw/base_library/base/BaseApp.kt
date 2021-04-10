@@ -18,7 +18,7 @@ import com.scwang.smart.refresh.layout.listener.DefaultRefreshHeaderCreator
  *    desc   :
  *    version: 1.0
  */
-class BaseApp : Application(){
+open class BaseApp : Application(){
     init {
         initSmartRefreshLayout()
     }

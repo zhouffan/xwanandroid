@@ -2,6 +2,7 @@ package org.fw.x_wanandroid
 
 import org.fw.x_wanandroid.bean.Banner
 import org.fw.x_wanandroid.bean.BaseBean
+import retrofit2.Call
 import retrofit2.http.GET
 
 /**
@@ -19,4 +20,8 @@ interface API {
     //首页banner
     @GET("banner/json")
     suspend fun getBanner(): BaseBean<MutableList<Banner>>
+
+    //首页banner
+    @GET("banner/json")
+    fun getBanner2(): Call<BaseBean<MutableList<Banner>>>
 }
