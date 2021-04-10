@@ -22,6 +22,8 @@ import kotlin.coroutines.suspendCoroutine
  *    date   : 2021/4/10 12:04
  *    desc   :
  *
+ *    https://developer.android.com/kotlin/coroutines/coroutines-adv
+ *
  *    导入包：implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2-native-mt"
  *    GlobalScope.launch{} 创建一个顶级协程   //不阻塞当前线程   --不用
  *    runBlocking{}        创建一个协程作用域  //阻塞当前线程    --不用
@@ -100,6 +102,22 @@ class TestCoroutineActivity : BaseVmActivity<ActivityTest2Binding, TestViewModel
         mViewBinding.btn2.setOnClickListener {
             mViewModel.getBanner()
         }
+
+        val coroutineScope2 = CoroutineScope(Dispatchers.Main)
+        coroutineScope2.launch{
+            fetchDocs()
+        }
+
+    }
+
+    suspend fun fetchDocs() {                             // Dispatchers.Main
+        val result = gets()          // Dispatchers.IO for `get`
+        mViewBinding.btn2.text = result.toString()        // Dispatchers.Main
+    }
+
+    suspend fun gets() = withContext(Dispatchers.IO) {
+        val apiService = RetrofitUtil.getApiService(API::class.java)
+        apiService.getBanner().data()
     }
 
     /**

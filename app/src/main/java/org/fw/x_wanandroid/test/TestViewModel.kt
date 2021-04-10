@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import com.fw.base_library.base.BaseViewModel
 import com.fw.base_library.net.RetrofitUtil
 import com.fw.base_library.util.LogUtil
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.fw.x_wanandroid.API
 import org.fw.x_wanandroid.bean.Banner
 
@@ -27,8 +29,12 @@ class TestViewModel: BaseViewModel() {
         //异步请求数据，重置数据，刷新UI
         launch{
             LogUtil.i("2:"+Thread.currentThread().toString())
-            val apiService = RetrofitUtil.getApiService(API::class.java)
-            val banner = apiService.getBanner().data()
+            val banner = withContext(Dispatchers.IO){
+                LogUtil.i("3:"+Thread.currentThread().toString())
+                val apiService = RetrofitUtil.getApiService(API::class.java)
+                apiService.getBanner().data()
+            }
+            LogUtil.i("4:"+Thread.currentThread().toString())
             bannerData.value = banner
         }
 

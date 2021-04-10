@@ -20,7 +20,7 @@ import java.net.UnknownHostException
  */
 typealias Error = (Exception) -> Unit
 typealias Cancel = (Exception) -> Unit
-typealias Block = suspend (CoroutineScope) -> Unit
+typealias Block = suspend () -> Unit
 
 open class BaseViewModel: ViewModel() {
     /**
@@ -32,11 +32,11 @@ open class BaseViewModel: ViewModel() {
      */
     fun launch(error: Error? = null, cancel: Cancel? = null
                , showErrorToast: Boolean = true, block: Block){
-        //创建协程
+        //创建协程    暂时写 主线程
         val coroutineScope = CoroutineScope(Dispatchers.Main)
         coroutineScope.launch {
             try {
-                block(this)
+                block()
             } catch (e: Exception) {
                 onError(e, showErrorToast)
                 if(e is CancellationException){
