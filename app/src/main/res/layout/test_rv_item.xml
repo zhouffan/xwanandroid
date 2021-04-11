@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:padding="10dp"
-    tools:context=".MainActivity"
+    tools:context=".ui.main.MainActivity"
     android:focusable="true">
 
     <TextView

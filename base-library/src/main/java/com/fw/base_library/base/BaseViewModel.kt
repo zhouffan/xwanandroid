@@ -20,7 +20,7 @@ import java.net.UnknownHostException
  */
 typealias Error = (Exception) -> Unit
 typealias Cancel = (Exception) -> Unit
-typealias Block = suspend () -> Unit
+typealias Block<T> = suspend () -> T
 
 open class BaseViewModel: ViewModel() {
     /**
@@ -31,8 +31,8 @@ open class BaseViewModel: ViewModel() {
      * @param showErrorToast Boolean
      */
     fun launch(error: Error? = null, cancel: Cancel? = null
-               , showErrorToast: Boolean = true, block: Block){
-        //创建协程    暂时写 主线程
+               , showErrorToast: Boolean = true, block: Block<Unit>){
+        //创建协程，用于调用请求挂起函数    设置主线程
         val coroutineScope = CoroutineScope(Dispatchers.Main)
         coroutineScope.launch {
             try {
@@ -45,6 +45,24 @@ open class BaseViewModel: ViewModel() {
                     error?.invoke(e)
                 }
             }
+        }
+    }
+
+    fun <T> async(block: Block<T>): Deferred<T> {
+        val coroutineScope = CoroutineScope(Dispatchers.IO)
+        //阻塞
+        return coroutineScope.async {
+            block.invoke()
+        }
+    }
+
+    /**
+     * 取消协程
+     * @param job Job
+     */
+    fun cancelJob(job: Job){
+        if (job.isActive && !job.isCompleted && !job.isCancelled) {
+            job.cancel()
         }
     }
 

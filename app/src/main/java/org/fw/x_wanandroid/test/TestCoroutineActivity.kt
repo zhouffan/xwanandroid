@@ -100,13 +100,14 @@ class TestCoroutineActivity : BaseVmActivity<ActivityTest2Binding, TestViewModel
         }
 
         mViewBinding.btn2.setOnClickListener {
-            mViewModel.getBanner()
+            mViewModel.getBannerIO()
         }
 
-        val coroutineScope2 = CoroutineScope(Dispatchers.Main)
-        coroutineScope2.launch{
-            fetchDocs()
-        }
+//        val coroutineScope2 = CoroutineScope(Dispatchers.Main)
+//        coroutineScope2.launch{
+//            fetchDocs()
+//        }
+
 
     }
 
