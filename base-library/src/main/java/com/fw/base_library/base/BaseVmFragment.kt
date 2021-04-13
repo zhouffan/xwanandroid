@@ -34,14 +34,14 @@ abstract class BaseVmFragment<VB: ViewBinding, VM: ViewModel>: BaseFragment<VB>(
         }
     }
 
-    open fun observe(){}
+    abstract fun observe()
 
-    open fun init(){}
+    abstract fun init()
 
     /**
      * 懒加载数据
      */
-    open fun lazyLoadData() {}
+    abstract fun lazyLoadData()
 
     abstract fun getViewModelClass(): Class<VM>
 }

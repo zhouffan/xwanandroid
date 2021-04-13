@@ -22,11 +22,11 @@ object RetrofitUtil {
     private var baseUrl = ""
 
     private val retrofit: Retrofit by lazy {
-        val loggingInterceptor = HttpLoggingInterceptor {
-            Log.d("httpLog", it)
+        val loggingInterceptor = HttpLoggingInterceptor().let {
+            it.redactHeader("zff=====>")
+            it.level = HttpLoggingInterceptor.Level.BODY
+            it
         }
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-
         //okHttpclient
         val client = OkHttpClient.Builder()
             .callTimeout(CALL_TIMEOUT, TimeUnit.SECONDS)

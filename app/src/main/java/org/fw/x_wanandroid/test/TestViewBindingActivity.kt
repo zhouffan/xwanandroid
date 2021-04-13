@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.fw.base_library.glide.GlideUtil
 import com.fw.base_library.net.RetrofitUtil
 import com.fw.base_library.util.LogUtil
 import com.fw.base_library.util.ToastUtil
@@ -23,6 +24,9 @@ class TestViewBindingActivity : AppCompatActivity() {
 
         val binding = ActivityTest3Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        GlideUtil.show(this@TestViewBindingActivity,
+            "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ff1f91553d69196980d9f0cc05dec92393192c8c31f9d7-LcE79T_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1620919727&t=e3448964ce1aa4e59024d4b26aafcec1", binding.iv)
 
         var i = 0
         LogUtil.i("ssssssss")

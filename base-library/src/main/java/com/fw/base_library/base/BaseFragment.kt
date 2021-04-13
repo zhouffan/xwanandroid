@@ -15,7 +15,7 @@ import androidx.viewbinding.ViewBinding
  *    version: 1.0
  */
 abstract class BaseFragment<VB: ViewBinding>: Fragment(){
-    lateinit var mBinding: VB
+    lateinit var mViewBinding: VB
 
     abstract fun getViewBinding(): VB
 
@@ -24,9 +24,9 @@ abstract class BaseFragment<VB: ViewBinding>: Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = getViewBinding()
+        mViewBinding = getViewBinding()
 
-        return mBinding.root
+        return mViewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
