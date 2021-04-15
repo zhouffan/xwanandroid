@@ -56,7 +56,7 @@ class MyAppGlideModule: AppGlideModule() {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
         )
         //日志级别
-        builder.setLogLevel(Log.INFO)
+        builder.setLogLevel(Log.WARN)
 
         //异常捕获 => 可以传入一个磁盘执行器和/或一个 resize 执行器
 //        val strategy = GlideExecutor.UncaughtThrowableStrategy(){

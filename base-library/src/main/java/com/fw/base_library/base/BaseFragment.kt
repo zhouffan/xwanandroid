@@ -1,10 +1,12 @@
 package com.fw.base_library.base
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.viewbinding.ViewBinding
 
 /**
@@ -15,6 +17,8 @@ import androidx.viewbinding.ViewBinding
  *    version: 1.0
  */
 abstract class BaseFragment<VB: ViewBinding>: Fragment(){
+    lateinit var fragment: Fragment
+
     lateinit var mViewBinding: VB
 
     abstract fun getViewBinding(): VB
@@ -25,7 +29,7 @@ abstract class BaseFragment<VB: ViewBinding>: Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         mViewBinding = getViewBinding()
-
+        fragment = this
         return mViewBinding.root
     }
 

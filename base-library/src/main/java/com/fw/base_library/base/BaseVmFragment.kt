@@ -14,7 +14,7 @@ import androidx.viewbinding.ViewBinding
  *    version: 1.0
  */
 abstract class BaseVmFragment<VB: ViewBinding, VM: ViewModel>: BaseFragment<VB>() {
-    lateinit var mViewModel: ViewModel
+    lateinit var mViewModel: VM
     private var lazyLoad = false
 
     override fun initialize() {

@@ -1,9 +1,11 @@
 package org.fw.x_wanandroid
 
+import org.fw.x_wanandroid.bean.Article
 import org.fw.x_wanandroid.bean.Banner
 import org.fw.x_wanandroid.bean.BaseBean
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 /**
  *    author : 进击的巨人
@@ -19,9 +21,13 @@ interface API {
 
     //首页banner
     @GET("banner/json")
+    fun getBanner2(): Call<BaseBean<MutableList<Banner>>>
+
+    //首页-banner
+    @GET("banner/json")
     suspend fun getBanner(): BaseBean<MutableList<Banner>>
 
-    //首页banner
-    @GET("banner/json")
-    fun getBanner2(): Call<BaseBean<MutableList<Banner>>>
+    //首页-文章列表
+    @GET("article/list/{page}/json")
+    suspend fun getArticleList(@Path("page") page:Int): BaseBean<Article>
 }
