@@ -36,7 +36,28 @@ class HomeViewModel: BaseViewModel() {
      * 获取首页文章
      * @param page Int
      */
-    fun getArticleData(page: Int) = launch {
-        articleData.value = repository.getHomeArticleList(page).data()
+//    fun getArticleData(page: Int) = launch {
+//        articleData.value = repository.getHomeArticleList(page).data()
+//    }
+
+    /**
+     * 多个请求同时结束时返回
+     * 包含置顶数据
+     * @param page Int
+     */
+    fun getAllArticleData(page: Int) = launch {
+        val homeArticleList = repository.getHomeArticleList(page)
+        val topArticleList = repository.getTopArticleList()
+        val homeArticle = homeArticleList.await().data()
+        val topArticle = topArticleList.await().data()
+        //重新封装数据
+        if(topArticle.size > 0){
+            //置顶标识
+            topArticle.forEach { it.top = true }
+            topArticle.addAll(homeArticle.datas)
+            homeArticle.datas.clear()
+            homeArticle.datas.addAll(topArticle)
+        }
+        articleData.value = homeArticle
     }
 }

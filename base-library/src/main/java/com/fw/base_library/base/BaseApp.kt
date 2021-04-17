@@ -3,13 +3,20 @@ package com.fw.base_library.base
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.strictmode.Violation
+import androidx.annotation.RequiresApi
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.api.RefreshHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.DefaultRefreshHeaderCreator
+import java.io.PrintWriter
+import java.io.StringWriter
+import java.util.concurrent.Executor
 
 /**
  *    author : 进击的巨人
@@ -23,10 +30,12 @@ open class BaseApp : Application(){
         initSmartRefreshLayout()
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate() {
         super.onCreate()
         application = this
         registerActivityLifecycle()
+
     }
 
     companion object{
@@ -74,5 +83,20 @@ open class BaseApp : Application(){
 
     override fun onTerminate() {
         super.onTerminate()
+    }
+
+    class CurrentThreadExecutor : Executor {
+        override fun execute(r: Runnable) {
+            r.run()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    class StacktraceLogger : StrictMode.OnVmViolationListener {
+        override fun onVmViolation(v: Violation) {
+            val sw = StringWriter()
+            val pw = PrintWriter(sw)
+            v.printStackTrace(pw)
+        }
     }
 }

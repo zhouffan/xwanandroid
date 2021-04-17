@@ -1,8 +1,6 @@
 package org.fw.x_wanandroid
 
-import org.fw.x_wanandroid.bean.Article
-import org.fw.x_wanandroid.bean.Banner
-import org.fw.x_wanandroid.bean.BaseBean
+import org.fw.x_wanandroid.bean.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -30,4 +28,10 @@ interface API {
     //首页-文章列表
     @GET("article/list/{page}/json")
     suspend fun getArticleList(@Path("page") page:Int): BaseBean<Article>
+
+    //首页-置顶文章
+    @GET("article/top/json")
+    suspend fun getTopArticleList(): BaseBean<MutableList<Data>>
+
+
 }

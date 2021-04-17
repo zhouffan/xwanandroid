@@ -1,5 +1,10 @@
 package org.fw.x_wanandroid.ui.main
 
+import com.fw.base_library.base.Block
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import org.fw.x_wanandroid.repository.BaseRepository
 
 /**
@@ -24,7 +29,16 @@ class HomeRepository:  BaseRepository(){
      * @param page Int
      * @return BaseBean<Article>
      */
-    suspend fun getHomeArticleList(page: Int)=io {
+//    suspend fun getHomeArticleList(page: Int)=io {
+//        apiService.getArticleList(page)
+//    }
+    suspend fun getHomeArticleList(page: Int)= async {
         apiService.getArticleList(page)
     }
+
+    suspend fun getTopArticleList()= async{
+        apiService.getTopArticleList()
+    }
+
+
 }

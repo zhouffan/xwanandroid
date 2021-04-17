@@ -77,6 +77,15 @@ object GlideUtil {
             .into(iv)
     }
 
+    fun show(context: Context, url: String, iv:ImageView){
+        GlideApp.with(context)
+            .load(url)
+            .apply(options)
+            //交叉淡入变换
+            .transition(withCrossFade())
+            .into(iv)
+    }
+
     /**
      * 恢复加载图片
      * @param fragment Fragment

@@ -1,17 +1,17 @@
 package org.fw.x_wanandroid.repository
 
+import com.fw.base_library.base.Block
 import com.fw.base_library.net.RetrofitUtil
 import com.fw.base_library.util.LogUtil
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.fw.x_wanandroid.API
 
 /**
  *    author : 进击的巨人
  *    e-mail : zhouffan@qq.com
  *    date   : 2021/4/11 01:01
- *    desc   :
+ *    desc   : 异步请求封装
+ *
  *    version: 1.0
  */
 open class BaseRepository {
@@ -25,5 +25,18 @@ open class BaseRepository {
       */
      suspend fun <T> io(block: suspend () -> T):T = withContext(Dispatchers.IO) {
           block.invoke()
+     }
+
+     /**
+      * 阻塞
+      * @param block SuspendFunction0<T>
+      * @return Deferred<T>
+      */
+     fun <T> async(block: Block<T>): Deferred<T> {
+          val coroutineScope = CoroutineScope(Dispatchers.IO)
+          //阻塞
+          return coroutineScope.async {
+               block.invoke()
+          }
      }
 }

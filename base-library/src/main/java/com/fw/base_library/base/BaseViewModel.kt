@@ -24,7 +24,7 @@ typealias Block<T> = suspend () -> T
 
 open class BaseViewModel: ViewModel() {
     /**
-     * http请求 协程封装
+     * http请求 协程封装--主线程
      * @param block Function0<Unit>
      * @param error Function1<Exception, Unit>?
      * @param cancel Function1<Exception, Unit>?

@@ -9,7 +9,7 @@ package org.fw.x_wanandroid.bean
  */
 data class Article(
     val curPage: Int,
-    val datas: List<Data>,
+    val datas: MutableList<Data>,
     val offset: Int,
     val over: Boolean,
     val pageCount: Int,
@@ -50,7 +50,8 @@ data class Data(
     val type: Int,
     val userId: Int,
     val visible: Int,
-    val zan: Int
+    val zan: Int,
+    var top: Boolean
 )
 
 data class Tag(
