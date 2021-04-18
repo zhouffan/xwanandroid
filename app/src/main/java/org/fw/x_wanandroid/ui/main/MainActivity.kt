@@ -28,6 +28,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val fragments = mutableListOf(HomeFragment.newInstance(),
         PlazaFragment.newInstance(), PublicFragment.newInstance(), TreeFragment.newInstance(),
         ProjectFragment.newInstance())
+        //********
+        //********
+        //********
+        viewPager.offscreenPageLimit = 1
         viewPager.adapter = MyPagerAdapter(fragments, this)
 
         viewPager.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
