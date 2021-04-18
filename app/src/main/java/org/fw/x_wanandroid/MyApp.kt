@@ -15,5 +15,8 @@ class MyApp : BaseApp(){
         super.onCreate()
 
         RetrofitUtil.setBaseUrl(API.BASE_URL)
+
     }
+
+
 }

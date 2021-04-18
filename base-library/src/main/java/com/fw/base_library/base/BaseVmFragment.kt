@@ -14,6 +14,13 @@ import androidx.viewbinding.ViewBinding
  *    version: 1.0
  */
 abstract class BaseVmFragment<VB: ViewBinding, VM: ViewModel>: BaseFragment<VB>() {
+    //当前页数
+    var page: Int = 0
+    //总页数
+    var pageCount: Int = 1
+    //加载状态
+    var loadArticleState: Int = -1
+
     lateinit var mViewModel: VM
     private var lazyLoad = false
 

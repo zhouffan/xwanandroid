@@ -8,8 +8,10 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.os.strictmode.Violation
 import androidx.annotation.RequiresApi
+import com.scwang.smart.refresh.footer.BallPulseFooter
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
+import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.api.RefreshHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
@@ -30,7 +32,6 @@ open class BaseApp : Application(){
         initSmartRefreshLayout()
     }
 
-    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate() {
         super.onCreate()
         application = this
@@ -48,8 +49,11 @@ open class BaseApp : Application(){
      */
     private fun initSmartRefreshLayout(){
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
-            layout.setPrimaryColorsId(android.R.color.holo_blue_dark, android.R.color.holo_red_dark, android.R.color.holo_orange_dark)
-            ClassicsHeader(context)
+            layout.setPrimaryColorsId(
+                android.R.color.black,
+                android.R.color.white,
+                android.R.color.holo_orange_dark)
+            MaterialHeader(context)
         }
         //设置全局的Footer构建器
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->

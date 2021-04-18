@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fw.base_library.base.BaseVmFragment
 import com.fw.base_library.glide.GlideUtil
 import com.fw.base_library.util.*
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.transformer.*
@@ -33,7 +35,8 @@ import org.fw.x_wanandroid.databinding.FragmentHomeBinding
  * create an instance of this fragment.
  */
 class HomeFragment : BaseVmFragment<FragmentHomeBinding, HomeViewModel>() {
-    var page: Int = 0
+    private lateinit var homeAdapter: HomeAdapter
+    private lateinit var bannerAdapter: ImageAdapter
 
     companion object {
         @JvmStatic
@@ -56,23 +59,54 @@ class HomeFragment : BaseVmFragment<FragmentHomeBinding, HomeViewModel>() {
             it.addBannerLifecycleObserver(this) //添加生命周期观察者
             it.indicator = CircleIndicator(activity)
             it.setPageTransformer(ZoomOutPageTransformer())
+            bannerAdapter = ImageAdapter(this@HomeFragment, mutableListOf())
+            it.adapter = bannerAdapter
         }
 
 //        mViewBinding.homeRv.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         context?.let { mViewBinding.homeRv.addItemDecoration(SpaceItemDecoration(it))}
+        homeAdapter = HomeAdapter(mutableListOf())
+        mViewBinding.homeRv.adapter = homeAdapter
+
+        mViewBinding.refreshLayout.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener{
+            override fun onLoadMore(refreshLayout: RefreshLayout) {
+                page++
+                if(page >= pageCount){
+                    page = pageCount - 1
+                }
+                loadArticleState = 0
+                mViewModel.getAllArticleData(page)
+            }
+
+            override fun onRefresh(refreshLayout: RefreshLayout) {
+                page = 0
+                loadArticleState = 1
+                mViewModel.getAllArticleData(page);
+            }
+
+        })
+
     }
 
     override fun observe() {
         mViewModel.bannerData.observe(this){
-            mViewBinding.banner.adapter = ImageAdapter(this@HomeFragment, it)
+            bannerAdapter.setDatas(it)
+            bannerAdapter.notifyDataSetChanged()
         }
         mViewModel.articleData.observe(this){
 //            ToastUtil.show(fragment.requireContext(), ""+it.datas)
-            mViewBinding.homeRv.adapter = HomeAdapter(it.datas as MutableList<Data>)
+            this.pageCount = it.pageCount
+            homeAdapter.addData(it.datas)
+
+            when (loadArticleState) {
+                0 -> mViewBinding.refreshLayout.finishLoadMore()
+                1 -> mViewBinding.refreshLayout.finishRefresh()
+            }
         }
     }
 
     override fun lazyLoadData() {
+        page = 0
         mViewModel.getBannerData()
         mViewModel.getAllArticleData(page)
     }

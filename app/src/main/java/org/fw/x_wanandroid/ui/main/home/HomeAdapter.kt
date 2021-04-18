@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fw.base_library.glide.GlideUtil
 import org.fw.x_wanandroid.R
 import org.fw.x_wanandroid.bean.Data
+import org.fw.x_wanandroid.ui.detail.DetailActivity
 
 /**
  *    author : 进击的巨人
@@ -65,6 +66,11 @@ class HomeAdapter(data: MutableList<Data>) :
             tvArticleTag.text = item.tags[0].name
         } else {
             tvArticleTag.visibility = View.GONE
+        }
+
+        //跳转事件
+        helper.itemView.setOnClickListener {
+            DetailActivity.startMe(context, item.link, item.title)
         }
     }
 

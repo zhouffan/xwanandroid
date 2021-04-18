@@ -40,5 +40,12 @@ class HomeRepository:  BaseRepository(){
         apiService.getTopArticleList()
     }
 
+    /**
+     * 广场列表
+     * @param page Int
+     */
+    suspend fun getPlazaList(page: Int) = io{
+        apiService.getPlazaList(page)
+    }
 
 }
