@@ -4,6 +4,7 @@ import org.fw.x_wanandroid.bean.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  *    author : 进击的巨人
@@ -40,5 +41,23 @@ interface API {
      */
     @GET("user_article/list/{page}/json")
     suspend fun getPlazaList(@Path("page") page:Int): BaseBean<Article>
+
+    /**
+     * 获取公众号列表
+     * http://wanandroid.com/wxarticle/chapters/json
+     */
+    @GET("/wxarticle/chapters/json")
+    suspend fun getWXChapters(): BaseBean<MutableList<Wechat>>
+
+    /**
+     * 知识体系下的文章
+     * http://www.wanandroid.com/article/list/0/json?cid=168
+     * @param page
+     * @param cid
+     */
+    @GET("article/list/{page}/json")
+    suspend fun getKnowledgeList(@Path("page") page: Int, @Query("cid") cid: Int):
+            BaseBean<Article>
+
 
 }

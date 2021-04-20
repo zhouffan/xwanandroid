@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import org.fw.x_wanandroid.R
-import org.fw.x_wanandroid.ui.main.pub.PublicFragment
 
 /**
  * A simple [Fragment] subclass.

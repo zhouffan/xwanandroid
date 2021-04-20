@@ -1,10 +1,7 @@
 package org.fw.x_wanandroid.ui.main
 
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.fw.base_library.base.BaseActivity
@@ -13,7 +10,7 @@ import org.fw.x_wanandroid.databinding.ActivityMainBinding
 import org.fw.x_wanandroid.ui.main.home.HomeFragment
 import org.fw.x_wanandroid.ui.main.plaza.PlazaFragment
 import org.fw.x_wanandroid.ui.main.project.ProjectFragment
-import org.fw.x_wanandroid.ui.main.pub.PublicFragment
+import org.fw.x_wanandroid.ui.main.wechat.WechatFragment
 import org.fw.x_wanandroid.ui.main.tree.TreeFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -26,7 +23,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         //viewpager2
         val viewPager = mViewBinding.vp2
         val fragments = mutableListOf(HomeFragment.newInstance(),
-        PlazaFragment.newInstance(), PublicFragment.newInstance(), TreeFragment.newInstance(),
+        PlazaFragment.newInstance(), WechatFragment.newInstance(), TreeFragment.newInstance(),
         ProjectFragment.newInstance())
         //********
         //********
@@ -52,6 +49,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             false
         }
 
+        viewPager.setCurrentItem(2,false)
     }
 
     class MyPagerAdapter(private val fragmentList: MutableList<Fragment>, fragmentActivity: FragmentActivity)
