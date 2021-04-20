@@ -25,7 +25,8 @@ class WechatFragment : BaseVmFragment<FragmentPublicBinding, WechatModel>() {
                     fragments.add(PersonalArticleFragment.newInstance(it.id))
                 }
                 mViewBinding.viewpager2.adapter = ChildFragmentAdapter(fragments, fragment)
-                mViewBinding.viewpager2.offscreenPageLimit = 3
+                //缓存页面
+                mViewBinding.viewpager2.offscreenPageLimit = fragments.size
                 //联动工具类：TabLayoutMediator
                 TabLayoutMediator(mViewBinding.tableLayout, mViewBinding.viewpager2, true,
                     TabLayoutMediator.TabConfigurationStrategy { tab, position ->

@@ -18,7 +18,7 @@
     <style name="MyTabLayoutStyle" parent="Base.Widget.Design.TabLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/purple_700</item>
+        <item name="android:background">@color/purple_500</item>
         <item name="tabIndicatorColor">@color/white</item>
         <item name="tabIndicatorHeight">@dimen/dp_1</item>
         <item name="tabSelectedTextColor">@color/white</item>

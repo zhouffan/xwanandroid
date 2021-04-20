@@ -11,7 +11,7 @@ import org.fw.x_wanandroid.ui.main.home.HomeFragment
 import org.fw.x_wanandroid.ui.main.plaza.PlazaFragment
 import org.fw.x_wanandroid.ui.main.project.ProjectFragment
 import org.fw.x_wanandroid.ui.main.wechat.WechatFragment
-import org.fw.x_wanandroid.ui.main.tree.TreeFragment
+import org.fw.x_wanandroid.ui.main.system.SystemFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
@@ -23,7 +23,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         //viewpager2
         val viewPager = mViewBinding.vp2
         val fragments = mutableListOf(HomeFragment.newInstance(),
-        PlazaFragment.newInstance(), WechatFragment.newInstance(), TreeFragment.newInstance(),
+        PlazaFragment.newInstance(), WechatFragment.newInstance(), SystemFragment.newInstance(),
         ProjectFragment.newInstance())
         //********
         //********

@@ -1,4 +1,4 @@
-package org.fw.x_wanandroid.ui.main.tree
+package org.fw.x_wanandroid.ui.main.system
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,14 +9,12 @@ import org.fw.x_wanandroid.R
 
 /**
  * A simple [Fragment] subclass.
- * Use the [TreeFragment.newInstance] factory method to
+ * Use the [KnowledgeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TreeFragment : Fragment() {
-
+class KnowledgeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -24,11 +22,11 @@ class TreeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tree, container, false)
+        return inflater.inflate(R.layout.fragment_knowledge, container, false)
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = TreeFragment()
+        fun newInstance() = KnowledgeFragment()
     }
 }
