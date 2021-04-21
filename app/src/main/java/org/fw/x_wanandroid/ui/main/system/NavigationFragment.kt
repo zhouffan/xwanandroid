@@ -5,33 +5,63 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.observe
+import com.fw.base_library.base.BaseVmFragment
 import org.fw.x_wanandroid.R
+import org.fw.x_wanandroid.bean.NavigationBean
+import org.fw.x_wanandroid.databinding.FragmentNavigationBinding
+import q.rorbin.verticaltablayout.adapter.TabAdapter
+import q.rorbin.verticaltablayout.widget.ITabView
 
-class NavigationFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_navigation, container, false)
-    }
+class NavigationFragment : BaseVmFragment<FragmentNavigationBinding, SystemModel>() {
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment NavigationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() = NavigationFragment()
     }
+
+    override fun observe() {
+//        mViewModel.navigationData.observe(this){
+//            setLeft(it)
+//        }
+    }
+
+    fun setLeft(data: MutableList<NavigationBean>){
+        mViewBinding.navigationTabLayout.setTabAdapter(object: TabAdapter{
+            override fun getIcon(position: Int): ITabView.TabIcon? {
+                return null
+            }
+
+            override fun getBadge(position: Int): ITabView.TabBadge? {
+                return null
+            }
+
+            override fun getBackground(position: Int): Int {
+                return 0
+            }
+
+            override fun getTitle(position: Int): ITabView.TabTitle? {
+                return null
+            }
+
+            override fun getCount(): Int {
+                return data.size
+            }
+
+        })
+    }
+
+    override fun init() {
+
+    }
+
+    override fun lazyLoadData() {
+        mViewModel.getNavigationList()
+    }
+
+    override fun getViewModelClass() = SystemModel::class.java
+
+    override fun getViewBinding() = FragmentNavigationBinding.inflate(layoutInflater)
+
+
 }

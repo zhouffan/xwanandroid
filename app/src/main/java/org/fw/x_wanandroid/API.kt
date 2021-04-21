@@ -59,5 +59,17 @@ interface API {
     suspend fun getKnowledgeList(@Path("page") page: Int, @Query("cid") cid: Int):
             BaseBean<Article>
 
+    /**
+     * 获取知识体系
+     * http://www.wanandroid.com/tree/json
+     */
+    @GET("tree/json")
+    suspend fun getKnowledgeTree(): BaseBean<MutableList<KnowledgeTree>>
 
+    /**
+     * 导航数据
+     * http://www.wanandroid.com/navi/json
+     */
+    @GET("navi/json")
+    fun getNavigationList(): BaseBean<MutableList<NavigationBean>>
 }

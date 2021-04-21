@@ -76,4 +76,8 @@ dependencies {
 
     /*agentWeb*/
     implementation "com.just.agentweb:agentweb-androidx:$agentweb_version"
+
+    /*implementation*/
+    implementation 'q.rorbin:VerticalTabLayout:1.2.5'
+
 }

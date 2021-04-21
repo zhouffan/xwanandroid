@@ -3,9 +3,7 @@ package org.fw.x_wanandroid.ui.main.system
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.fw.base_library.base.BaseViewModel
-import org.fw.x_wanandroid.bean.Article
-import org.fw.x_wanandroid.bean.Banner
-import org.fw.x_wanandroid.bean.BaseBean
+import org.fw.x_wanandroid.bean.*
 import org.fw.x_wanandroid.ui.main.HomeRepository
 
 /**
@@ -20,14 +18,21 @@ class SystemModel: BaseViewModel() {
         HomeRepository()
     }
 
-    val articleData = MutableLiveData<Article>()
+    val knowledgeTreeData = MutableLiveData<MutableList<KnowledgeTree>>()
+    val navigationData = MutableLiveData<MutableList<NavigationBean>>()
 
     /**
      * 发起请求
      */
-    fun getPlazaList(page: Int){
+    fun getKnowledgeTree(){
         launch {
-            articleData.value = repository.getPlazaList(page).data()
+            knowledgeTreeData.value = repository.getKnowledgeTree().data()
+        }
+    }
+
+    fun getNavigationList(){
+        launch {
+            navigationData.value = repository.getNavigationList().data()
         }
     }
 

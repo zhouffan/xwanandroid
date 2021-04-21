@@ -67,4 +67,19 @@ class HomeRepository:  BaseRepository(){
         apiService.getKnowledgeList(page, cid)
     }
 
+    /**
+     * 获取知识体系
+     * @return BaseBean<KnowledgeTree>
+     */
+    suspend fun getKnowledgeTree() = io{
+        apiService.getKnowledgeTree()
+    }
+
+    /**
+     * 导航数据
+     * @return BaseBean<MutableList<NavigationBean>>
+     */
+    suspend fun getNavigationList() = io{
+        apiService.getNavigationList()
+    }
 }

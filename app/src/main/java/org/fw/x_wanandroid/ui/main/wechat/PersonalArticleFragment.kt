@@ -6,10 +6,11 @@ import com.fw.base_library.base.BaseVmFragment
 import com.fw.base_library.util.SpaceItemDecoration
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
+import org.fw.x_wanandroid.config.Constant.CONTENT_CID_KEY
 import org.fw.x_wanandroid.databinding.FragmentPersonalArticleBinding
 import org.fw.x_wanandroid.ui.main.home.HomeAdapter
 
-const val CONTENT_CID_KEY = "cid"
+
 class PersonalArticleFragment : BaseVmFragment<FragmentPersonalArticleBinding, PersonalArticleModel>() {
     private var cid: Int = 0
     companion object {

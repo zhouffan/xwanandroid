@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Xwanandroid">
-        <activity android:name=".ui.detail.DetailActivity"></activity>
+        <activity android:name=".ui.knowledge.KnowledgeActivity"></activity>
+        <activity android:name=".ui.detail.DetailActivity" />
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

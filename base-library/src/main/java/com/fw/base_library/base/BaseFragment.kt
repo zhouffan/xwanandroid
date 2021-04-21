@@ -18,6 +18,7 @@ import androidx.viewbinding.ViewBinding
  */
 abstract class BaseFragment<VB: ViewBinding>: Fragment(){
     lateinit var fragment: Fragment
+    lateinit var mActivity: FragmentActivity
 
     lateinit var mViewBinding: VB
 
@@ -29,6 +30,7 @@ abstract class BaseFragment<VB: ViewBinding>: Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         mViewBinding = getViewBinding()
+        mActivity = this.activity!!
         fragment = this
         return mViewBinding.root
     }

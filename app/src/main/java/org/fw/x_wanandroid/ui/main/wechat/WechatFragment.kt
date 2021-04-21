@@ -50,11 +50,5 @@ class WechatFragment : BaseVmFragment<FragmentPublicBinding, WechatModel>() {
 
     override fun getViewBinding() = FragmentPublicBinding.inflate(layoutInflater)
 
-    class ChildFragmentAdapter(private val pages: MutableList<Fragment>,
-                               fragment: Fragment): FragmentStateAdapter(fragment){
-        override fun getItemCount() = pages.size
 
-        override fun createFragment(position: Int) =  pages[position]
-
-    }
 }
