@@ -71,5 +71,5 @@ interface API {
      * http://www.wanandroid.com/navi/json
      */
     @GET("navi/json")
-    fun getNavigationList(): BaseBean<MutableList<NavigationBean>>
+    suspend fun getNavigationList(): BaseBean<MutableList<NavigationBean>>
 }

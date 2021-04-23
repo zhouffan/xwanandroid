@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.observe
 import com.fw.base_library.base.BaseVmFragment
 import org.fw.x_wanandroid.R
@@ -21,9 +22,9 @@ class NavigationFragment : BaseVmFragment<FragmentNavigationBinding, SystemModel
     }
 
     override fun observe() {
-//        mViewModel.navigationData.observe(this){
-//            setLeft(it)
-//        }
+        mViewModel.navigationData.observe(this){
+            setLeft(it)
+        }
     }
 
     fun setLeft(data: MutableList<NavigationBean>){
@@ -37,11 +38,16 @@ class NavigationFragment : BaseVmFragment<FragmentNavigationBinding, SystemModel
             }
 
             override fun getBackground(position: Int): Int {
-                return 0
+                return -1
             }
 
             override fun getTitle(position: Int): ITabView.TabTitle? {
-                return null
+                return ITabView.TabTitle.Builder()
+                    .setContent(data[position].name)
+                    .setTextColor(
+                        ContextCompat.getColor(mActivity, R.color.colorAccent),
+                        ContextCompat.getColor(mActivity, R.color.Grey500))
+                    .build()
             }
 
             override fun getCount(): Int {

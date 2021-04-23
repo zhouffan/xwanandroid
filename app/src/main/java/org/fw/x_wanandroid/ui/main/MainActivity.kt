@@ -49,7 +49,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             false
         }
 
-        viewPager.setCurrentItem(2,false)
+        viewPager.setCurrentItem(3,false)
     }
 
     class MyPagerAdapter(private val fragmentList: MutableList<Fragment>, fragmentActivity: FragmentActivity)
