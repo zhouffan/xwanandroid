@@ -22,9 +22,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val bottomNav = mViewBinding.bottomNav
         //viewpager2
         val viewPager = mViewBinding.vp2
-        val fragments = mutableListOf(HomeFragment.newInstance(),
-        PlazaFragment.newInstance(), WechatFragment.newInstance(), SystemFragment.newInstance(),
-        ProjectFragment.newInstance())
+        val fragments: MutableList<Fragment> = mutableListOf(
+            HomeFragment.newInstance(),
+            PlazaFragment.newInstance(),
+            WechatFragment.newInstance(),
+            SystemFragment.newInstance(),
+            ProjectFragment.newInstance()
+        )
         //********
         //********
         //********

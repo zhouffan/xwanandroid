@@ -82,4 +82,12 @@ class HomeRepository:  BaseRepository(){
     suspend fun getNavigationList() = io{
         apiService.getNavigationList()
     }
+
+    /**
+     * 项目数据
+     * @return BaseBean<MutableList<KnowledgeTree>>
+     */
+    suspend fun getProjectTree() = io{
+        apiService.getProjectTree()
+    }
 }

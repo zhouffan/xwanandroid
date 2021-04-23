@@ -8,7 +8,7 @@ package org.fw.x_wanandroid.bean
  *    version: 1.0
  */
 data class NavigationBean(
-    val articles: List<Article>,
+    val articles: List<Data>,
     val cid: Int,
     val name: String
 )

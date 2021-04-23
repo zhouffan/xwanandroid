@@ -80,4 +80,7 @@ dependencies {
     /*implementation*/
     implementation 'q.rorbin:VerticalTabLayout:1.2.5'
 
+    /*flow-layout*/
+    implementation 'com.nex3z:flow-layout:1.3.3'
+
 }

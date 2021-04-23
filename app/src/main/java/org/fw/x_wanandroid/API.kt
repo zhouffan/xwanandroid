@@ -72,4 +72,11 @@ interface API {
      */
     @GET("navi/json")
     suspend fun getNavigationList(): BaseBean<MutableList<NavigationBean>>
+
+    /**
+     * 项目数据
+     * http://www.wanandroid.com/project/tree/json
+     */
+    @GET("project/tree/json")
+    suspend fun getProjectTree(): BaseBean<MutableList<KnowledgeTree>>
 }

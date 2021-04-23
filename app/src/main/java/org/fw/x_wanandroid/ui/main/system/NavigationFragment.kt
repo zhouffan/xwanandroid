@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.fw.base_library.base.BaseVmFragment
 import org.fw.x_wanandroid.R
 import org.fw.x_wanandroid.bean.NavigationBean
@@ -21,9 +23,14 @@ class NavigationFragment : BaseVmFragment<FragmentNavigationBinding, SystemModel
         fun newInstance() = NavigationFragment()
     }
 
+    private val linearLayoutManager: LinearLayoutManager by lazy {
+        LinearLayoutManager(activity)
+    }
+
     override fun observe() {
         mViewModel.navigationData.observe(this){
             setLeft(it)
+            setRight(it)
         }
     }
 
@@ -55,6 +62,22 @@ class NavigationFragment : BaseVmFragment<FragmentNavigationBinding, SystemModel
             }
 
         })
+
+
+    }
+
+    /**
+     * 右侧数据
+     * @param data MutableList<NavigationBean>
+     */
+    fun setRight(data: MutableList<NavigationBean>){
+        mViewBinding.recyclerView.run {
+            adapter = NavigationAdapter(data)
+            layoutManager = linearLayoutManager
+            itemAnimator = DefaultItemAnimator()
+            setHasFixedSize(true)
+        }
+        mViewBinding.recyclerView.adapter = NavigationAdapter(data)
     }
 
     override fun init() {
